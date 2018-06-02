@@ -8,17 +8,17 @@ import java.util.Objects;
 
 @Entity
 public class City {
-    private int cityCode;
+    private Long cityCode;
     private String city;
-    private int provinceCode;
+    private Long provinceCode;
 
     @Id
     @Column(name = "city_code", nullable = false)
-    public int getCityCode() {
+    public Long getCityCode() {
         return cityCode;
     }
 
-    public void setCityCode(int cityCode) {
+    public void setCityCode(Long cityCode) {
         this.cityCode = cityCode;
     }
 
@@ -34,11 +34,11 @@ public class City {
 
     @Basic
     @Column(name = "province_code", nullable = false)
-    public int getProvinceCode() {
+    public Long getProvinceCode() {
         return provinceCode;
     }
 
-    public void setProvinceCode(int provinceCode) {
+    public void setProvinceCode(Long provinceCode) {
         this.provinceCode = provinceCode;
     }
 

@@ -130,7 +130,7 @@ $(function () {
 
 //获取名族
         $("input[name='nation']").combobox({
-            url:'/nation/list',
+            url:'/info/nation/list',
             valueField:'nationCode',
             textField:'nation',
             label:'民族：',
@@ -140,14 +140,14 @@ $(function () {
 
         //获取省
         $("#province").combobox({
-            url:'/province/list',
+            url:'/info/province/findall',
             valueField:'provinceCode',
             textField:'province',
             label:'所在省份：',
             required:true,
             method:'GET',
             onSelect: function(rec){
-                var url = '/city/findcity?provinceCode='+rec.provinceCode;
+                var url = '/info/city/findcity?provinceCode='+rec.provinceCode;
                 $("#city").combobox('clear');
                 $("#region").combobox('clear');
                 $("#city").combobox('reload',url);
@@ -162,7 +162,7 @@ $(function () {
             required:true,
             method:'GET',
             onSelect: function(rec){
-                var url = '/region/findregion?cityCode='+rec.cityCode;
+                var url = '/info/region/findregion?cityCode='+rec.cityCode;
                 $("#region").combobox('clear');
                 $("#region").combobox('reload',url);
             }

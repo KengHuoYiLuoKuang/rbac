@@ -8,16 +8,16 @@ import java.util.Objects;
 
 @Entity
 public class Province {
-    private int provinceCode;
+    private Long provinceCode;
     private String province;
 
     @Id
     @Column(name = "province_code", nullable = false)
-    public int getProvinceCode() {
+    public Long getProvinceCode() {
         return provinceCode;
     }
 
-    public void setProvinceCode(int provinceCode) {
+    public void setProvinceCode(Long provinceCode) {
         this.provinceCode = provinceCode;
     }
 

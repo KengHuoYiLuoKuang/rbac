@@ -11,11 +11,13 @@
     <div class="field">
         <input id="idCardNumber" class="easyui-textbox" name="idCardNumber" style="width:100%" data-options="label:'身份证：',required:true">
     </div>
+
     <div class="field">
-        <input class="easyui-textbox" name="age" style="width:100%" data-options="label:'年龄：',required:true">
+        <input id="birthDate" class="easyui-datebox" name="birthDate" style="width:50%" data-options="label:'出生年月：',editable:false,required:true">
+        <input id="age" class="easyui-textbox" name="age" style="width:49%" data-options="label:'年龄：',required:true,editable:false,">
     </div>
     <div class="field">
-        <input class="easyui-textbox" name="telephone" style="width:100%" data-options="label:'电话：',required:true">
+        <input id="telephone" class="easyui-textbox" name="telephone" style="width:100%" data-options="label:'电话：',required:true">
     </div>
     <div class="field">
         <input  name="nation" style="width:100%" >
@@ -34,16 +36,21 @@
         <input class="easyui-textbox" name="profession" style="width:100%" data-options="label:'职业：',required:true">
     </div>
 
-    <input class="easyui-datebox" name="birthDate" style="width:100%" data-options="label:'出生年月：',editable:false">
 
     <div class="field">
         <label class="textbox-label textbox-label-before">城镇户口：</label>
         <input class="easyui-switchbutton" name="urban" data-options="onText:'是',offText:'否',checked:true" value="true">
     </div>
     <div class="field">
-        <label class="textbox-label textbox-label-before">流动人口：</label>
-        <input class="easyui-switchbutton" name="urban" data-options="onText:'是',offText:'否',checked:true" value="true">
+        <div style="float: left">
+            <label class="textbox-label textbox-label-before">流动人口：</label>
+            <input class="easyui-switchbutton" name="floating" data-options="onText:'是',offText:'否',checked:true" value="true">
+        </div>
+        <div style="float: right">
+            <a href="#" id="save" class="easyui-linkbutton" data-options="iconCls:'icon-save'">保存</a>
+        </div>
     </div>
+
 </form>
 </div>
 <script>
@@ -168,6 +175,43 @@ $(function () {
             required:true,
             method:'GET',
         });
+
+        //表单提交
+        $("#save").click(function () {
+            $.messager.progress();	// 显示进度条
+            $('#population-form').form('submit', {
+                    url: "/333",
+                    onSubmit:function (){
+                        var isValid = $(this).form('validate');
+                        if (!isValid){
+                            $.messager.progress('close');	// 如果表单是无效的则隐藏进度条
+                        }
+                        return isValid;	// 返回false终止表单提交
+                    },
+                    success: function(){
+                        $.messager.progress('close');	// 如果提交成功则隐藏进度条
+                    }
+        });
+        });
+
+        //计算年龄
+        $("#birthDate").datebox({
+            onSelect: function () {
+                // 获得今天的时间
+                var date = new Date();
+                var birthday = $(this).val();
+                var startDate = new Date(birthday);
+                var newDate = date.getTime() - startDate.getTime();
+                // 向下取整  例如 10岁 20天 会计算成 10岁
+                // 如果要向上取整 计算成11岁，把floor替换成 ceil
+                var age = Math.ceil(newDate / 1000 / 60 / 60 / 24 / 365);
+                if (isNaN(age)) {
+                    age = "";
+                }
+                $("#age").textbox('setText',age);
+            }
+        });
+
     });
 
 

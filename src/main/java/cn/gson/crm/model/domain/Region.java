@@ -8,28 +8,28 @@ import java.util.Objects;
 
 @Entity
 public class Region {
-    private int regionCode;
-    private int cityCode;
+    private Long regionCode;
+    private Long cityCode;
     private String region;
     private int regionPeopleNumber;
 
     @Id
     @Column(name = "region_code", nullable = false)
-    public int getRegionCode() {
+    public Long getRegionCode() {
         return regionCode;
     }
 
-    public void setRegionCode(int regionCode) {
+    public void setRegionCode(Long regionCode) {
         this.regionCode = regionCode;
     }
 
     @Basic
     @Column(name = "city_code", nullable = false)
-    public int getCityCode() {
+    public Long getCityCode() {
         return cityCode;
     }
 
-    public void setCityCode(int cityCode) {
+    public void setCityCode(Long cityCode) {
         this.cityCode = cityCode;
     }
 

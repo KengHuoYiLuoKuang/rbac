@@ -46,7 +46,6 @@ public class RegionController {
         Page pageData = regionDao.findAll(new MySpecification<Region>().and(
                 MySpecification.Cnd.like("region", region)
         ).asc("regionCode"), pr);
-
         return new DataGrid<>(pageData);
     }
     @RequestMapping("/form")
@@ -62,6 +61,8 @@ public class RegionController {
             }
         }
     }
+
+
 
 
 

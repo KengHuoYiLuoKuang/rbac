@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequestMapping("/info/province")
 @Controller
@@ -92,5 +93,11 @@ public class ProvinceController {
             return new AjaxResult(false).setMessage(e.getMessage());
         }
         return new AjaxResult();
+    }
+
+    @RequestMapping("/findall")
+    @ResponseBody
+    public List list (){
+        return provinceDao.findAll();
     }
 }

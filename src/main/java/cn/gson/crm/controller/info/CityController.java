@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RequestMapping("/info/city")
 @Controller
@@ -91,5 +92,10 @@ public class CityController {
             return new AjaxResult(false).setMessage(e.getMessage());
         }
         return new AjaxResult();
+    }
+    @RequestMapping("/findcity")
+    @ResponseBody
+    public List findByProvince(Long provinceCode){
+        return cityDao.findByProvinceCode(provinceCode);
     }
 }

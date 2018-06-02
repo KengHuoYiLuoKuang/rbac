@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface NationDao extends JpaRepository<Nation,Long> {
+public interface NationDao extends JpaRepository<Nation,Integer> {
 }

@@ -22,13 +22,13 @@
     </div>
 
     <div class="field">
-        <input class="easyui-combobox" name="province" style="width:100%" >
+        <input id="province" name="province" style="width:100%" data-options="label:'所在省份：',required:true">
     </div>
     <div class="field">
-    <input class="easyui-combobox" name="city" style="width:100%" data-options="label:'市区：',required:true">
+    <input id="city" name="city" style="width:100%" data-options="label:'所在省份：',required:true">
     </div>
     <div class="field">
-    <input class="easyui-combobox" name="village" style="width:100%" data-options="label:'区县：',required:true">
+    <input  id="region" class="easyui-combobox" name="village" style="width:100%" data-options="label:'区县：',required:true">
     </div>
     <div class="field">
         <input class="easyui-textbox" name="profession" style="width:100%" data-options="label:'职业：',required:true">
@@ -127,16 +127,46 @@ $(function () {
             valueField:'nationCode',
             textField:'nation',
             label:'民族：',
-            required:true
+            required:true,
+            method:'GET'
         });
 
         //获取省
-        $("input[name='province']").combobox({
+        $("#province").combobox({
             url:'/province/list',
             valueField:'provinceCode',
             textField:'province',
             label:'所在省份：',
-            required:true
+            required:true,
+            method:'GET',
+            onSelect: function(rec){
+                var url = '/city/findcity?provinceCode='+rec.provinceCode;
+                $("#city").combobox('clear');
+                $("#region").combobox('clear');
+                $("#city").combobox('reload',url);
+            }
+        });
+        //获取市
+        $("input[name='city']").combobox({
+            //url:'/city/findcity?provinceCode=510000',
+            valueField:'cityCode',
+            textField:'city',
+            label:'市区：',
+            required:true,
+            method:'GET',
+            onSelect: function(rec){
+                var url = '/region/findregion?cityCode='+rec.cityCode;
+                $("#region").combobox('clear');
+                $("#region").combobox('reload',url);
+            }
+        });
+        //获取区
+        $("#region").combobox({
+            valueField:'regionCode',
+            textField:'region',
+            label:'区县：',
+            required:true,
+            method:'GET',
         });
     });
 

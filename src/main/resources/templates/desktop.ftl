@@ -3,8 +3,8 @@
     <div class="field">
         <input id="name" class="easyui-textbox" name="realName" style="width:80%" data-options="label:'姓名：',required:true">
         <select class="easyui-combobox" editable="false" data-options="panelHeight:'auto'" name="gender" style="width:18%">
-            <option value="BOY">男</option>
-            <option value="GIRL">女</option>
+            <option value="1">男</option>
+            <option value="0">女</option>
         </select>
     </div>
 
@@ -14,7 +14,7 @@
 
     <div class="field">
         <input id="birthDate" class="easyui-datebox" name="birthDate" style="width:50%" data-options="label:'出生年月：',editable:false,required:true">
-        <input id="age" class="easyui-textbox" name="age" style="width:49%" data-options="label:'年龄：',required:true,editable:false,">
+        <input id="age" class="easyui-textbox" name="age" style="width:49%" data-options="label:'年龄：',editable:false,">
     </div>
     <div class="field">
         <input id="telephone" class="easyui-textbox" name="telephone" style="width:100%" data-options="label:'电话：',required:true">
@@ -30,10 +30,10 @@
     <input id="city" name="city" style="width:100%" data-options="label:'所在省份：',required:true">
     </div>
     <div class="field">
-    <input  id="region" class="easyui-combobox" name="village" style="width:100%" data-options="label:'区县：',required:true">
+    <input  id="region" class="easyui-combobox" name="region" style="width:100%" data-options="label:'区县：',required:true">
     </div>
     <div class="field">
-        <input class="easyui-textbox" name="profession" style="width:100%" data-options="label:'职业：',required:true">
+        <input id="profession" class="easyui-combobox" name="profession" style="width:100%" data-options="label:'职业：',required:true">
     </div>
 
 
@@ -117,11 +117,11 @@ $(function () {
             required:true,
             validType:'idCardNumber',
         });
-        //年龄验证
+        /*电话验证
         $("input[name='age']").textbox({
             required:true,
             validType:'age',
-        });
+        });*/
         //年龄验证
         $("input[name='telephone']").textbox({
             required:true,
@@ -175,12 +175,21 @@ $(function () {
             required:true,
             method:'GET',
         });
+        //获取职业
+        $("#profession").combobox({
+            url:'/info/profession/list',
+            valueField:'professionCode',
+            textField:'profession',
+            label:'职业：',
+            required:true,
+            method:'GET',
+        });
 
         //表单提交
         $("#save").click(function () {
             $.messager.progress();	// 显示进度条
             $('#population-form').form('submit', {
-                    url: "/333",
+                    url: "/info/people2016/save",
                     onSubmit:function (){
                         var isValid = $(this).form('validate');
                         if (!isValid){
@@ -208,7 +217,7 @@ $(function () {
                 if (isNaN(age)) {
                     age = "";
                 }
-                $("#age").textbox('setText',age);
+                $("#age").textbox('setValue',age);
             }
         });
 

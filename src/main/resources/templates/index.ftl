@@ -65,7 +65,7 @@
   </#list>
   </div>
 </div>
-<div data-options="region:'center',href:'/desktop'">
+<div data-options="region:'center',href:'/desktop'" style="width: 100%">
 
 </div>
 <div id="footer" data-options="region:'south'" style="height:20px;text-align: center;line-height: 20px;overflow: hidden;">

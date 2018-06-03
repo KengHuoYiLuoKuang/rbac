@@ -1,9 +1,6 @@
 package cn.gson.crm.model.domain;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -28,7 +25,6 @@ public class People2016 {
     private String profession;
     private byte floating;
     private byte urban;
-    private String idCardNumber;
 
     @Basic
     @Column(name = "id_number", nullable = true, length = 255)
@@ -41,6 +37,7 @@ public class People2016 {
     }
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id_", nullable = false)
     public int getId() {
         return id;
@@ -230,15 +227,6 @@ public class People2016 {
         this.urban = urban;
     }
 
-    @Basic
-    @Column(name = "idCardNumber", nullable = false, length = 20)
-    public String getIdCardNumber() {
-        return idCardNumber;
-    }
-
-    public void setIdCardNumber(String idCardNumber) {
-        this.idCardNumber = idCardNumber;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -264,13 +252,38 @@ public class People2016 {
                 Objects.equals(regionCode, that.regionCode) &&
                 Objects.equals(region, that.region) &&
                 Objects.equals(professionCode, that.professionCode) &&
-                Objects.equals(profession, that.profession) &&
-                Objects.equals(idCardNumber, that.idCardNumber);
+                Objects.equals(profession, that.profession);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(idNumber, id, lastNameCode, lastName, firstName, gender, ageRangeCode, age, nationCode, nation, provinceCode, province, cityCode, city, regionCode, region, professionCode, profession, floating, urban, idCardNumber);
+        return Objects.hash(idNumber, id, lastNameCode, lastName, firstName, gender, ageRangeCode, age, nationCode, nation, provinceCode, province, cityCode, city, regionCode, region, professionCode, profession, floating, urban);
+    }
+
+    @Override
+    public String toString() {
+        return "People2016{" +
+                "idNumber='" + idNumber + '\'' +
+                ", id=" + id +
+                ", lastNameCode=" + lastNameCode +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", gender=" + gender +
+                ", ageRangeCode=" + ageRangeCode +
+                ", age=" + age +
+                ", nationCode=" + nationCode +
+                ", nation='" + nation + '\'' +
+                ", provinceCode=" + provinceCode +
+                ", province='" + province + '\'' +
+                ", cityCode=" + cityCode +
+                ", city='" + city + '\'' +
+                ", regionCode=" + regionCode +
+                ", region='" + region + '\'' +
+                ", professionCode=" + professionCode +
+                ", profession='" + profession + '\'' +
+                ", floating=" + floating +
+                ", urban=" + urban +
+                '}';
     }
 }

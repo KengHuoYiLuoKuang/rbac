@@ -62,6 +62,6 @@ public class People2016Controller {
 
         System.out.println(people2016);
         people2016Dao.save(people2016);
-        return "成功";
+        return "1";
     }
 }

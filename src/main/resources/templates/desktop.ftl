@@ -197,7 +197,19 @@ $(function () {
                         }
                         return isValid;	// 返回false终止表单提交
                     },
-                    success: function(){
+                    success: function(e){
+                        if(e==1){
+                            $.messager.show({
+                                title : '提示',
+                                msg : '保存成功',
+                            });
+                            $('#population-form').form("reset");
+                        }else {
+                            $.messager.show({
+                                title : '提示',
+                                msg : '保存失败',
+                            });
+                        }
                         $.messager.progress('close');	// 如果提交成功则隐藏进度条
                     }
         });

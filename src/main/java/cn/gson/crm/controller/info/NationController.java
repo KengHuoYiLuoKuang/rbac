@@ -54,9 +54,9 @@ public class NationController {
 
         if (id != null) {
             ObjectMapper mapper = new ObjectMapper();
-            Nation Nation = nationDao.findOne(id);
+            Nation nation = nationDao.findOne(id);
             try {
-                model.addAttribute("nation", mapper.writeValueAsString(Nation));
+                model.addAttribute("nation", mapper.writeValueAsString(nation));
             } catch (JsonProcessingException e) {
                 logger.error("json转换错误", e);
             }

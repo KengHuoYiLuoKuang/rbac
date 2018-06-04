@@ -1,5 +1,4 @@
 <form class="app-form" id="city-form">
-  <input type="hidden" name="id">
   <div class="field">
     <input class="easyui-textbox" name="cityCode" style="width:80%" data-options="label:'市区编号：',required:true">
   </div>

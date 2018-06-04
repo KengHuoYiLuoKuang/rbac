@@ -1,5 +1,4 @@
 <form class="app-form" id="profession-form">
-  <input type="hidden" name="id">
   <div class="field">
     <input class="easyui-textbox" name="professionCode" style="width:80%" data-options="label:'职业编号：',required:true">
   </div>

@@ -1,5 +1,4 @@
 <form class="app-form" id="nation-form">
-  <input type="hidden" name="id">
   <div class="field">
     <input class="easyui-textbox" name="nationCode" style="width:80%" data-options="label:'省份编号：',required:true">
   </div>
